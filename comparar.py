@@ -16,7 +16,7 @@ elif len(base[base.Jogador==nome_busca1]['Jogador'])>1:
   clube1 = st.input_text("Clube do primeiro jogador:")
   if len(base[(base.Jogador==nome_busca1)&(base.Equipa == clube1)]['Jogador'])>1:
     st.write(base[(base.Jogador==nome_busca1)&(base.Equipa == clube)])
-    idade1 = int(st.input_text("Idade do primeiro jogador:")
+    idade1 = int(st.input_text("Idade do primeiro jogador:"))
     base1 = base[(base.Jogador==nome_busca1)&(base.Equipa == clube1)&(base.Idade==idade1)]
     st.write(base1)
                  
