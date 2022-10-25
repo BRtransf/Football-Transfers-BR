@@ -16,6 +16,8 @@ for ano in lista_anos:
     df['Ano'] = ano
     base = base.append(df).drop_duplicates().reset_index(drop=True)
 
+base.rename("Equipa dentro de um período seleccionado:":"Equipe no ano","Equipa":"Equipe atual")
+    
 st.write(base[['Jogador','Equipa','Minutos jogados:','Ano']])
 
 st.subheader('Jogador 1')
@@ -27,13 +29,13 @@ if len(base[base.Jogador==nome_busca1]) == 0:
 elif len(base[base.Jogador==nome_busca1]['Jogador'])>1:
   st.write(base[base.Jogador==nome_busca1])
   clube1 = st.text_input("Clube do primeiro jogador:")
-  if len(base[(base.Jogador==nome_busca1)&(base.Equipa == clube1)]['Jogador'])>1:
-    st.write(base[(base.Jogador==nome_busca1)&(base.Equipa == clube1)])
+  if len(base[(base.Jogador==nome_busca1)&(base["Equipe atual"] == clube1)]['Jogador'])>1:
+    st.write(base[(base.Jogador==nome_busca1)&(base["Equipe atual"] == clube1)])
     idade1 = int(st.text_input("Idade do primeiro jogador:"))
-    base1 = base[(base.Jogador==nome_busca1)&(base.Equipa == clube1)&(base.Idade==idade1)]
+    base1 = base[(base.Jogador==nome_busca1)&(base["Equipe atual"] == clube1)&(base.Idade==idade1)]
     st.write(base1)
   else:
-    base1 = base[(base.Jogador==nome_busca1)&(base.Equipa == clube1)]
+    base1 = base[(base.Jogador==nome_busca1)&(base["Equipe atual"] == clube1)]
     st.write(base1)
                  
 else:
@@ -49,13 +51,13 @@ if len(base[base.Jogador==nome_busca2]) == 0:
 elif len(base[base.Jogador==nome_busca2]['Jogador'])>1:
   st.write(base[base.Jogador==nome_busca2])
   clube2 = st.text_input("Clube do primeiro jogador:")
-  if len(base[(base.Jogador==nome_busca2)&(base.Equipa == clube2)]['Jogador'])>1:
-    st.write(base[(base.Jogador==nome_busca2)&(base.Equipa == clube2)])
+  if len(base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)]['Jogador'])>1:
+    st.write(base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)])
     idade2 = int(st.text_input("Idade do primeiro jogador:"))
-    base2 = base[(base.Jogador==nome_busca2)&(base.Equipa == clube2)&(base.Idade==idade2)]
+    base2 = base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)&(base.Idade==idade2)]
     st.write(base2)
   else:
-    base1 = base[(base.Jogador==nome_busca2)&(base.Equipa == clube2)]
+    base1 = base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)]
     st.write(base2)
                  
 else:
