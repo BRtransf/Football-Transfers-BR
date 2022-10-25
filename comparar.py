@@ -87,6 +87,7 @@ lista_vars = []
 for var in vars:
   lista_vars.append(str(var))
 
+st.write(lista_vars)
 df = df[[lista_vars]]
 
 st.write(df)
