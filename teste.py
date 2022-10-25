@@ -223,6 +223,7 @@ ax10 = fig.add_subplot(gs[5:10, 4:6],polar = True)
 ax11 = fig.add_subplot(gs[5:10, 6:8],polar = True)
 ax12 = fig.add_subplot(gs[5:10, 8:10],polar = True)
 
+ax1.axis("off")
 
 lista_axs = [ax3,ax4,ax5,ax6,ax7,ax8,ax9,ax10,ax11,ax12]
 
