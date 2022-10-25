@@ -14,9 +14,9 @@ for ano in lista_anos:
     arquivo = 'BRA1-'+ano+'-'+str(item)+'.csv'
     df = pd.read_csv(arquivo,sep=';',decimal=',')
     df['Ano'] = ano
-    base = base.append(df).drop_duplicates()
+    base = base.append(df).drop_duplicates().reset_index(drop=True)
 
-st.write(base)
+st.write(base[['Jogador','Equipa','Minutos jogados:','Ano']])
 
 st.subheader('Jogador 1')
 nome_busca1 = st.text_input("Nome do primeiro jogador:")
