@@ -102,7 +102,7 @@ for coluna in dic_posicoes[posicao]:
     t = 0
 
     while t < len(df_resumo):
-        df_resumo[coluna] = df_resumo[coluna].astype('int')
+        df_resumo[coluna] = df_resumo[coluna].astype('float64')
         df_radar[coluna][t] = (df_resumo[coluna][t] - np.nanmin(df_resumo[coluna]))/abs(np.nanmax(df_resumo[coluna])-np.nanmin(df_resumo[coluna]))
         t += 1
 
