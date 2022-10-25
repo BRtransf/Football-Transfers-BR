@@ -11,11 +11,11 @@ st.write(len(base))
 
 lista_pos = []
 for num in range(1,12):
-  lista_pos.append(str(num))
-lista_pos.append('8.5')
-lista_pos.append('9.5')
+  lista_pos.append(num)
+lista_pos.append(8.5)
+lista_pos.append(9.5)
 
-posicao = st.text_input('Inserir o número da posição desejada (1 a 11):')
+posicao = st.selectbox(label='Inserir o número da posição desejada (1 a 11):',options=[1,2,3,4,5,6,7,8,8.5,9,9.5,10,11])
 if posicao not in lista_pos:
   st.write('Favor inserir posição válida')
 
