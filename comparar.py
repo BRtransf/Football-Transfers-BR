@@ -50,10 +50,10 @@ if len(base[base.Jogador==nome_busca2]) == 0:
 
 elif len(base[base.Jogador==nome_busca2]['Jogador'])>1:
   st.write(base[base.Jogador==nome_busca2])
-  clube2 = st.text_input("Clube do primeiro jogador:")
+  clube2 = st.text_input("Clube do segundo jogador:")
   if len(base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)]['Jogador'])>1:
     st.write(base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)])
-    idade2 = int(st.text_input("Idade do primeiro jogador:"))
+    idade2 = int(st.text_input("Idade do segundo jogador:"))
     base2 = base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)&(base.Idade==idade2)]
     st.write(base2)
   else:
