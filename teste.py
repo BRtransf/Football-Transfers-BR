@@ -25,19 +25,19 @@ posicao = float(posicao)
 min_min = int(min_min)
 idade_max = int(idade_max)
 
-dic_posicoes = {1:['Golos'],
-                2:['Golos'],
-                3:['Golos'],
-                4:['Golos'],
-                5:['Golos'],
-                6:['Golos'],
-                7:['Golos'],
-                8:['Golos'],
-                8.5:['Golos'],
-                9:['Golos'],
-                9.5:['Golos'],
-                10:['Minutos jogados:'],
-                11:['Minutos jogados:']}
+dic_posicoes = {1:['Golos','Golos esperados','Assistências','Assistências esperadas','Duelos/90'],
+                2:['Golos','Golos esperados','Assistências','Assistências esperadas','Duelos/90'],
+                3:['Golos','Golos esperados','Assistências','Assistências esperadas','Duelos/90'],
+                4:['Golos','Golos esperados','Assistências','Assistências esperadas','Duelos/90'],
+                5:['Golos','Golos esperados','Assistências','Assistências esperadas','Duelos/90'],
+                6:['Golos','Golos esperados','Assistências','Assistências esperadas','Duelos/90'],
+                7:['Golos','Golos esperados','Assistências','Assistências esperadas','Duelos/90'],
+                8:['Golos','Golos esperados','Assistências','Assistências esperadas','Duelos/90'],
+                8.5:['Golos','Golos esperados','Assistências','Assistências esperadas','Duelos/90'],
+                9:['Golos','Golos esperados','Assistências','Assistências esperadas','Duelos/90'],
+                9.5:['Golos','Golos esperados','Assistências','Assistências esperadas','Duelos/90'],
+                10:['Golos','Golos esperados','Assistências','Assistências esperadas','Duelos/90'],
+                11:['Golos','Golos esperados','Assistências','Assistências esperadas','Duelos/90']}
 
 dic_siglas = {1:['GK'],
               2:['RB'],
