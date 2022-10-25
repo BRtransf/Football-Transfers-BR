@@ -82,8 +82,8 @@ st.write('Values:', anos2)
 
 df = pd.concat([base1[(base1.Ano>ano1min)&(base1.Ano<ano1max)],base2[(base2.Ano>ano2min)&(base2.Ano<ano2max)]])
 
-vars = st.multiselect(label = 'Variáveis de comparação',options=df.columns)
-lista_vars = []
+vars = st.multiselect(label = 'Variáveis de comparação',options=df.columns[7:])
+lista_vars = ['Jogador','Equipe atual','Equipe no ano','Posição','Idade',]
 for var in vars:
   lista_vars.append(str(var))
 
