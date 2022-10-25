@@ -186,3 +186,101 @@ df_area['Area'] = lista_area
 df_area['Clube'] = lista_clube
 df_area['ID'] = lista_ids
 
+dic_nomes_pos = {1:'Goleiro',
+                2:'Lateral Direito',
+                3:'Zagueiro',
+                4:'Zagueiro',
+                5:'Médio Defensivo',
+                6:'Lateral Esquerdo',
+                7:'Extremo Esquerdo',
+                8:'Box to Box',
+                8.5:'Médio Ofensivo',
+                9:'Centroavante',
+                9.5:'Segundo Atacante',
+                10:'Meia',
+                11:'Extremo Direito'}
+
+
+
+
+df_top = df_area.nlargest(10,'Area')
+
+fig = plt.figure(figsize = (15,9), tight_layout=True)
+
+gs = fig.add_gridspec(10,10)
+ax1 = fig.add_subplot(gs[0:1, 0:2])
+ax2 = fig.add_subplot(gs[0:1, 1:])
+
+ax3 = fig.add_subplot(gs[1:5, 0:2],polar = True)
+ax4 = fig.add_subplot(gs[1:5, 2:4],polar = True)
+ax5 = fig.add_subplot(gs[1:5, 4:6],polar = True)
+ax6 = fig.add_subplot(gs[1:5, 6:8],polar = True)
+ax7 = fig.add_subplot(gs[1:5, 8:10],polar = True)
+
+ax8 = fig.add_subplot(gs[5:10, 0:2],polar = True)
+ax9 = fig.add_subplot(gs[5:10, 2:4],polar = True)
+ax10 = fig.add_subplot(gs[5:10, 4:6],polar = True)
+ax11 = fig.add_subplot(gs[5:10, 6:8],polar = True)
+ax12 = fig.add_subplot(gs[5:10, 8:10],polar = True)
+
+
+lista_axs = [ax3,ax4,ax5,ax6,ax7,ax8,ax9,ax10,ax11,ax12]
+
+ax2.annotate(xy = (0, .5),
+    text = "Top "+str(len(df_top))+": Posição "+dic_nomes_pos[posicao]+"\nAnálise Mercado",
+    ha = "left",
+    va = "center",
+    weight = "bold",
+    size = 30,color='darkblue')
+ax2.axis("off")
+
+v = 0
+
+for jogador in df_top.ID:
+    
+    aux_df = df_radar[df_radar.ID == jogador].loc[:, df_radar.columns != 'ID']
+    aux_df = aux_df.drop('Jogador',axis=1)
+    
+    nome = df_top[df_top.ID == jogador]['Jogador'].tolist()[0]
+    
+    minutos = aux_df['Minutos jogados:'].tolist()[0]
+    jogos = aux_df['Partidas jogadas'].tolist()[0]
+    clube = aux_df['Equipa'].tolist()[0]
+    idade = aux_df['Idade'].tolist()[0]
+    
+    aux_df = aux_df.loc[:,aux_df.columns != 'Minutos jogados:']
+    aux_df = aux_df.loc[:,aux_df.columns != 'Partidas jogadas']
+    aux_df = aux_df.loc[:,aux_df.columns != 'Idade']
+    aux_df = aux_df.loc[:,aux_df.columns != 'Equipa']
+    aux_df = aux_df.loc[:,aux_df.columns != 'Posição']
+    
+    aux_df = aux_df.reset_index(drop=True)
+    
+    categories = aux_df.columns.tolist()
+    categories.append(categories[0])
+    
+    r = aux_df[0:1].values.tolist()
+    lista_raio = []
+    for item in r:
+        t = 0
+        while t < len(item):
+            lista_raio.append(item[t])
+            t += 1
+    
+    lista_raio.append(lista_raio[0])
+    
+    label_loc = np.linspace(start=0, stop=2 * np.pi, num=len(lista_raio))
+    
+    lista_axs[v].plot(label_loc,lista_raio, label=jogador,marker='.')
+    
+    lista_axs[v].set_title(nome + ' (' + str(minutos) + "')",fontsize = 16,fontweight='bold',color='darkblue')
+
+    lista_axs[v].set_thetagrids(np.degrees(label_loc), labels=categories,fontsize=7.5)
+    
+    '''lista_axs[v].set_rticks([-0.25,0,0.25,0.5,0.75])'''
+    
+    lista_axs[v].set_ylim(0,1)
+    
+    lista_axs[v].fill(label_loc,lista_raio,alpha=0.3)
+    
+    v += 1
