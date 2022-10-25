@@ -3,6 +3,15 @@ import pandas as pd
 
 base = pd.concat([pd.read_csv('base1.csv',sep=';'),pd.read_csv('base2.csv',sep=';')]).drop_duplicates(['Jogador','Equipa','Minutos jogados:'])
 
+def trat_base_wyscout(base):
+  for coluna in base.columns:
+    if type(base[coluna][0]) == 'int':
+      base[coluna] = base[coluna].astype('int')
+      
+trat_base_wyscout(base)
+
+base['DefesaMeta'] = (base['Golos sofridos esperados/90']/base['Golos sofridos/90'])*(base['Remates sofridos/90']*base['Defesas, %'])
+      
 st.write(len(base))
 
 lista_pos = []
@@ -23,3 +32,4 @@ idade_max = st.text_input('Idade máxima para analisar:')
 posicao = float(posicao)
 min_min = int(min_min)
 idade_max = int(idade_max)
+
