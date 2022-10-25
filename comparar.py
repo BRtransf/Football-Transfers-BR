@@ -71,3 +71,11 @@ ano2max = int(np.nanmax(base2.Ano))
 
 anos1 = st.slider('Anos analisados para Jogador 1',ano1min, ano1max, (ano1min, ano1max))
 st.write('Values:', anos1)
+
+anos2 = st.slider('Anos analisados para Jogador 1',ano2min, ano2max, (ano2min, ano2max))
+st.write('Values:', anos2)
+
+
+df = pd.concat([base1[(base1.Ano>ano1min)&(base1.Ano<ano1max)],base2[(base2.Ano>ano2min)&(base2.Ano<ano2max)]])
+
+vars = st.radio(df.columns)
