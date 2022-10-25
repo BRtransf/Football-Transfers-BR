@@ -88,6 +88,6 @@ for var in vars:
   lista_vars.append(str(var))
 
 st.write(lista_vars)
-df_comp = df[[lista_vars]].copy()
+df_comp = df[lista_vars].copy()
 
-st.write(df)
+st.write(df_comp)
