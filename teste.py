@@ -6,9 +6,6 @@ from matplotlib import pyplot as plt
 
 base = pd.concat([pd.read_csv('base1.csv',sep=';',decimal=','),pd.read_csv('base2.csv',sep=';',decimal=',')]).drop_duplicates(['Jogador','Equipa','Minutos jogados:'])
 
-      
-st.write(len(base))
-
 posicao = st.selectbox(label="Inserir o número da posição desejada (1 a 11):",options=[1,2,3,4,5,6,7,8,8.5,9,9.5,10,11])
 
 min_max = int(np.nanmax(base['Minutos jogados:']))
