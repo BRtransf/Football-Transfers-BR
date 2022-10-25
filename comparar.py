@@ -11,7 +11,7 @@ base = pd.DataFrame()
 
 for ano in lista_anos:
   for item in range(1,3):
-    arquivo = 'BRA1-'+ano+str(item)+'.csv'
+    arquivo = 'BRA1-'+ano+'-'+str(item)+'.csv'
     df = pd.read_csv(arquivo,sep=';',decimal=',')
     df['Ano'] = ano
     base = base.append(df).drop_duplicates()
