@@ -24,7 +24,6 @@ min_min = st.text_input('Minutagem mínima para analisar:')
 
 idade_max = st.text_input('Idade máxima para analisar:')
 
-
 posicao = float(posicao)
 min_min = int(min_min)
 idade_max = int(idade_max)
