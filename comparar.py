@@ -85,6 +85,6 @@ df = pd.concat([base1[(base1.Ano>ano1min)&(base1.Ano<ano1max)],base2[(base2.Ano>
 vars = st.multiselect(label = 'Variáveis de comparação',options=df.columns)
 
 
-df = df[columns=vars]
+df = df[[vars]]
 
 st.write(df)
