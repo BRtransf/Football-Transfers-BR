@@ -26,10 +26,10 @@ nome_busca1 = st.text_input("Nome do primeiro jogador:")
 if len(base[base.Jogador==nome_busca1]) == 0:
   st.write("Favor inserir o nome do jogador igual no WyScout")
 
-elif len(base[base.Jogador==nome_busca1]['Jogador'])>1:
+elif len(pd.unique(base[base.Jogador==nome_busca1]['Equipe atual']))>1:
   st.write(base[base.Jogador==nome_busca1])
   clube1 = st.text_input("Clube do primeiro jogador:")
-  if len(base[(base.Jogador==nome_busca1)&(base["Equipe atual"] == clube1)]['Jogador'])>1:
+  if len(pd.unique(base[(base.Jogador==nome_busca1)&(base["Equipe atual"] == clube1)]['Idade']))>1:
     st.write(base[(base.Jogador==nome_busca1)&(base["Equipe atual"] == clube1)])
     idade1 = int(st.text_input("Idade do primeiro jogador:"))
     base1 = base[(base.Jogador==nome_busca1)&(base["Equipe atual"] == clube1)&(base.Idade==idade1)]
@@ -48,10 +48,10 @@ nome_busca2 = st.text_input("Nome do segundo jogador:")
 if len(base[base.Jogador==nome_busca2]) == 0:
   st.write("Favor inserir o nome do jogador igual no WyScout")
 
-elif len(base[base.Jogador==nome_busca2]['Jogador'])>1:
+elif len(pd.unique(base[base.Jogador==nome_busca2]['Equipe atual']))>1:
   st.write(base[base.Jogador==nome_busca2])
   clube2 = st.text_input("Clube do segundo jogador:")
-  if len(base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)]['Jogador'])>1:
+  if len(pd.unique(base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)]['Idade']))>1:
     st.write(base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)])
     idade2 = int(st.text_input("Idade do segundo jogador:"))
     base2 = base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)&(base.Idade==idade2)]
