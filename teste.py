@@ -62,14 +62,30 @@ for item in dic_posicoes[posicao]:
 
 df_resumo = base[lista_cols].copy()
 
-st.write(df_resumo)
-
-
 df_resumo = df_resumo[(df_resumo['Minutos jogados:'] >= min_min)&(df_resumo.Idade<=idade_max)].reset_index(drop=True)
 
+comp = len(df_resumo)
+
+t=0
+while t < comp:
+    cont = 0
+    for item in dic_siglas[posicao]:
+        if item in df_resumo['Posição'][t]:
+            cont = 1
+            continue
+        else:
+            continue
+    if cont == 0:
+        df_resumo = df_resumo.drop(t)
+    t += 1
+    
+df_resumo = df_resumo.reset_index(drop=True)
+        
+
+df_resumo['ID'] = range(1,len(df_resumo)+1)
 
 
-
+st.write(df_resumo)
 
 
 
