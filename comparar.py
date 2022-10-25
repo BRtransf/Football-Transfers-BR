@@ -78,4 +78,4 @@ st.write('Values:', anos2)
 
 df = pd.concat([base1[(base1.Ano>ano1min)&(base1.Ano<ano1max)],base2[(base2.Ano>ano2min)&(base2.Ano<ano2max)]])
 
-vars = st.radio(label = 'Variáveis de comparação',options=df.columns)
+vars = st.multiselect(label = 'Variáveis de comparação',options=df.columns)
