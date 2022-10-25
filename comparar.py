@@ -69,5 +69,5 @@ ano1max = int(np.nanmax(base1.Ano))
 ano2min = int(np.nanmin(base2.Ano))
 ano2max = int(np.nanmax(base2.Ano))
 
-values = st.slider('Select a range of values',ano1min, ano1max, (ano1min, ano1max))
-st.write('Values:', values)
+anos1 = st.slider('Anos analisados para Jogador 1',ano1min, ano1max, (ano1min, ano1max))
+st.write('Values:', anos1)
