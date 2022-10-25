@@ -7,8 +7,13 @@ st.write(len(base))
 
 
 
-posicao = float(st.text_input('Inserir o número da posição desejada (1 a 11):'))
+posicao = st.text_input('Inserir o número da posição desejada (1 a 11):')
 
-min_min = int(st.text_input('Minutagem mínima para analisar:'))
+min_min = st.text_input('Minutagem mínima para analisar:')
 
-idade_max = int(st.text_input('Idade máxima para analisar:'))
+idade_max = st.text_input('Idade máxima para analisar:')
+
+
+posicao = float(posicao)
+min_min = int(min_min)
+idade_max = int(idade_max)
