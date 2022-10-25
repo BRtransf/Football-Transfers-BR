@@ -57,7 +57,7 @@ elif len(pd.unique(base[base.Jogador==nome_busca2]['Equipe atual']))>1:
     base2 = base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)&(base.Idade==idade2)]
     st.write(base2)
   else:
-    base1 = base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)]
+    base2 = base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)]
     st.write(base2)
                  
 else:
