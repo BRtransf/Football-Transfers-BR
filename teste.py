@@ -1,3 +1,6 @@
+git clone https://github.com/theorchard/openpyxl
+sudo python setup.py install
+
 import streamlit as st
 import pandas as pd
 pip install openpyxl
