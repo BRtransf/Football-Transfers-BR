@@ -16,9 +16,9 @@ for ano in lista_anos:
     df['Ano'] = ano
     base = base.append(df).drop_duplicates().reset_index(drop=True)
 
-base.rename(columns={"Equipa dentro de um período de tempo seleccionado":"Equipe no ano","Equipa":"Equipe atual"})
+base = base.rename(columns={"Equipa dentro de um período de tempo seleccionado":"Equipe no ano","Equipa":"Equipe atual"})
     
-st.write(base[['Jogador','Equipa','Minutos jogados:','Ano']])
+st.write(base[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
 
 st.subheader('Jogador 1')
 nome_busca1 = st.text_input("Nome do primeiro jogador:")
