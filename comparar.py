@@ -109,7 +109,7 @@ lista_axs = [ax3]
 ax1.axis("off")
 
 ax2.annotate(xy = (0, .5),
-    text = 'Comparação'+ pd.unique(df_comp.Jogador.tolist())[0]+' X '+pd.unique(df_comp.Jogador.tolist())[1],
+    text = 'Comparação: '+ pd.unique(df_comp.Jogador.tolist())[0]+' X '+pd.unique(df_comp.Jogador.tolist())[1],
     ha = "left",
     va = "center",
     weight = "bold",
