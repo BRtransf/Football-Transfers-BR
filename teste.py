@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from shapely.geometry import Polygon
+from matplotlib import pyplot as plt
+from PIL import Image
 
 base = pd.concat([pd.read_csv('base1.csv',sep=';',decimal=','),pd.read_csv('base2.csv',sep=';',decimal=',')]).drop_duplicates(['Jogador','Equipa','Minutos jogados:'])
 
