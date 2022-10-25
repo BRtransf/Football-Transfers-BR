@@ -2,7 +2,19 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-base = pd.read_csv('BRA1-2018-1.csv',sep=';',decimal=',')
+
+lista_anos = []
+for ano in range(2018,2022):
+  lista_anos.append(str(ano))
+
+base = pd.DataFrame() 
+
+for ano in lista_anos:
+  for item in range(1,3):
+    arquivo = 'BRA1-'+ano+str(item)+'.csv'
+    df = pd.read_csv(arquivo,sep=';',decimal=',')
+    df['Ano'] = ano
+    base = base.append(df).drop_duplicates()
 
 st.write(base)
 
