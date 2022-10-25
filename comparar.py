@@ -6,6 +6,7 @@ base = pd.read_csv('BRA1-2018-1.csv',sep=';',decimal=',')
 
 st.write(base)
 
+st.subheader('Jogador 1')
 nome_busca1 = st.text_input("Nome do primeiro jogador:")
 
 if len(base[base.Jogador==nome_busca1]) == 0:
@@ -27,7 +28,7 @@ else:
     base1 = base[base.Jogador == nome_busca1]
     st.write(base1)
 
-    
+st.subheader('Jogador 2')    
 nome_busca2 = st.text_input("Nome do segundo jogador:")
 
 if len(base[base.Jogador==nome_busca2]) == 0:
