@@ -82,7 +82,7 @@ anos2 = st.slider('Anos analisados para Jogador 2',ano2min, ano2max, (ano2min, a
 st.write('Values:', anos2)
 
 
-df = pd.concat([base1[(base1.Ano>ano1min)&(base1.Ano<ano1max)],base2[(base2.Ano>ano2min)&(base2.Ano<ano2max)]])
+df = pd.concat([base1[(base1.Ano>anos1[0])&(base1.Ano<anos1[1])],base2[(base2.Ano>anos2[0])&(base2.Ano<anos2[1])]])
 
 vars = st.multiselect(label = 'Variáveis de comparação',options=df.columns[7:])
 lista_vars = ['Jogador','Equipe atual','Equipe no ano','Posição','Idade']
