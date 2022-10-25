@@ -42,6 +42,8 @@ else:
     base1 = base[base.Jogador == nome_busca1]
     st.write(base1)
 
+base1 = base1.assign(ID = 1)    
+
 st.subheader('Jogador 2')    
 nome_busca2 = st.text_input("Nome do segundo jogador:")
 
@@ -63,7 +65,9 @@ elif len(pd.unique(base[base.Jogador==nome_busca2]['Equipe atual']))>1:
 else:
     base2 = base[base.Jogador == nome_busca2]
     st.write(base2)    
-    
+
+base2 = base2.assign(ID = 2)       
+
 ano1min = int(np.nanmin(base1.Ano))
 ano1max = int(np.nanmax(base1.Ano))
 ano2min = int(np.nanmin(base2.Ano))
@@ -79,3 +83,8 @@ st.write('Values:', anos2)
 df = pd.concat([base1[(base1.Ano>ano1min)&(base1.Ano<ano1max)],base2[(base2.Ano>ano2min)&(base2.Ano<ano2max)]])
 
 vars = st.multiselect(label = 'Variáveis de comparação',options=df.columns)
+
+
+df = df[columns=vars]
+
+st.write(df)
