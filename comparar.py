@@ -69,7 +69,5 @@ ano1max = np.nanmax(base1.Ano)
 ano2min = np.nanmin(base2.Ano)
 ano2max = np.nanmax(base2.Ano)
 
-values = st.slider(
-...     'Select a range of values',
-...     0.0, 100.0, (25.0, 75.0))
->>> st.write('Values:', values)
+values = st.slider('Select a range of values',0.0, 100.0, (25.0, 75.0))
+st.write('Values:', values)
