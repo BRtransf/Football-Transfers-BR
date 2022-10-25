@@ -283,4 +283,4 @@ for jogador in df_top.ID:
     
     v += 1
 
-fig.show()
+st.pyplot(fig)
