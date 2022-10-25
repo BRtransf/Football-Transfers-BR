@@ -11,7 +11,11 @@ st.write(len(base))
 
 posicao = st.selectbox(label='Inserir o número da posição desejada (1 a 11):',options=[1,2,3,4,5,6,7,8,8.5,9,9.5,10,11])
 
-min_min = st.slider('Minutagem mínima para analisar:',0,np.nanmax(base['Minutos jogados:']))
+min_max = np.nanmax(base['Minutos jogados:'])
+
+st.write(min_max)
+
+min_min = st.slider('Minutagem mínima para analisar:',0,min_max)
 
 idade_max = st.text_input('Idade máxima para analisar:')
 
