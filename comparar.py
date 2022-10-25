@@ -146,9 +146,7 @@ for jogador in pd.unique(df_comp.Jogador):
     label_loc = np.linspace(start=0, stop=2 * np.pi, num=len(lista_raio))
     
     lista_axs[v].plot(label_loc,lista_raio, label=jogador,marker='.')
-    
-    '''lista_axs[v].set_title(jogador,fontsize = 14,fontweight='bold',color='darkblue')'''
-    
+        
     lista_axs[v].set_thetagrids(np.degrees(label_loc), labels=categories)
     
     lista_axs[v].set_facecolor('aliceblue')
@@ -161,4 +159,4 @@ for jogador in pd.unique(df_comp.Jogador):
     
     lista_axs[v].legend()
 
-
+st.pyplot(fig)
