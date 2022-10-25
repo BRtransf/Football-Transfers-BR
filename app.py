@@ -1,4 +1,3 @@
-import pandas as pd
-teste
-teste
-teste
+import streamlit as st
+
+st.write("hello world")
