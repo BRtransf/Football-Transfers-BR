@@ -64,10 +64,10 @@ else:
     base2 = base[base.Jogador == nome_busca2]
     st.write(base2)    
     
-ano1min = np.nanmin(base1.Ano)
-ano1max = np.nanmax(base1.Ano)
-ano2min = np.nanmin(base2.Ano)
-ano2max = np.nanmax(base2.Ano)
+ano1min = int(np.nanmin(base1.Ano))
+ano1max = int(np.nanmax(base1.Ano))
+ano2min = int(np.nanmin(base2.Ano))
+ano2max = int(np.nanmax(base2.Ano))
 
 values = st.slider('Select a range of values',ano1min, ano1max, (ano1min, ano1max))
 st.write('Values:', values)
