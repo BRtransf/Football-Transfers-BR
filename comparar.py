@@ -72,7 +72,7 @@ ano2max = int(np.nanmax(base2.Ano))
 anos1 = st.slider('Anos analisados para Jogador 1',ano1min, ano1max, (ano1min, ano1max))
 st.write('Values:', anos1)
 
-anos2 = st.slider('Anos analisados para Jogador 1',ano2min, ano2max, (ano2min, ano2max))
+anos2 = st.slider('Anos analisados para Jogador 2',ano2min, ano2max, (ano2min, ano2max))
 st.write('Values:', anos2)
 
 
