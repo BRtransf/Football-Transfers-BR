@@ -277,10 +277,10 @@ for jogador in df_top.ID:
 
     lista_axs[v].set_thetagrids(np.degrees(label_loc), labels=categories,fontsize=7.5)
     
-    '''lista_axs[v].set_rticks([-0.25,0,0.25,0.5,0.75])'''
-    
     lista_axs[v].set_ylim(0,1)
     
     lista_axs[v].fill(label_loc,lista_raio,alpha=0.3)
     
     v += 1
+
+fig.show()
