@@ -25,17 +25,17 @@ posicao = float(posicao)
 min_min = int(min_min)
 idade_max = int(idade_max)
 
-dic_posicoes = {1:['Minutos jogados:'],
-                2:['Minutos jogados:'],
-                3:['Minutos jogados:'],
-                4:['Minutos jogados:'],
-                5:['Minutos jogados:'],
-                6:['Minutos jogados:'],
-                7:['Minutos jogados:'],
-                8:['Minutos jogados:'],
-                8.5:['Minutos jogados:'],
-                9:['Minutos jogados:'],
-                9.5:['Minutos jogados:'],
+dic_posicoes = {1:['Golos'],
+                2:['Golos'],
+                3:['Golos'],
+                4:['Golos'],
+                5:['Golos'],
+                6:['Golos'],
+                7:['Golos'],
+                8:['Golos'],
+                8.5:['Golos'],
+                9:['Golos'],
+                9.5:['Golos'],
                 10:['Minutos jogados:'],
                 11:['Minutos jogados:']}
 
