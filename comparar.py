@@ -28,7 +28,7 @@ else:
     st.write(base1)
 
     
-nome_busca2 = st.text_input("Nome do primeiro jogador:",key=2)
+nome_busca2 = st.text_input("Nome do segundo jogador:")
 
 if len(base[base.Jogador==nome_busca2]) == 0:
   st.write("Favor inserir o nome do jogador igual no WyScout")
