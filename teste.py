@@ -10,8 +10,6 @@ base = pd.concat([pd.read_csv('base1.csv',sep=';',decimal=','),pd.read_csv('base
 st.write(len(base))
 
 posicao = st.selectbox(label='Inserir o número da posição desejada (1 a 11):',options=[1,2,3,4,5,6,7,8,8.5,9,9.5,10,11])
-if posicao not in lista_pos:
-  st.write('Favor inserir posição válida')
 
 min_min = st.slider('Minutagem mínima para analisar:',0,np.max(base['Minutos jogados:']))
 
