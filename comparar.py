@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from matplotlib import pyplot as plt
+
 
 
 lista_anos = []
@@ -83,7 +85,7 @@ st.write('Values:', anos2)
 df = pd.concat([base1[(base1.Ano>ano1min)&(base1.Ano<ano1max)],base2[(base2.Ano>ano2min)&(base2.Ano<ano2max)]])
 
 vars = st.multiselect(label = 'Variáveis de comparação',options=df.columns[7:])
-lista_vars = ['Jogador','Equipe atual','Equipe no ano','Posição','Idade',]
+lista_vars = ['Jogador','Equipe atual','Equipe no ano','Posição','Idade']
 for var in vars:
   lista_vars.append(str(var))
 
@@ -91,3 +93,72 @@ st.write(lista_vars)
 df_comp = df[lista_vars].copy()
 
 st.write(df_comp)
+
+
+
+fig = plt.figure(figsize = (8,8), tight_layout=True, facecolor='aliceblue')
+
+gs = fig.add_gridspec(5,4)
+ax1 = fig.add_subplot(gs[0, 0])
+ax2 = fig.add_subplot(gs[0, 1:])
+ax3 = fig.add_subplot(gs[1:5, 0:4],polar = True)
+
+
+lista_axs = [ax3]
+
+ax1.axis("off")
+
+ax2.annotate(xy = (0, .5),
+    text = 'Comparação'+ pd.unique(df_comp.Jogador.tolist())[0]+' X '+pd.unique(df_comp.Jogador.tolist())[1],
+    ha = "left",
+    va = "center",
+    weight = "bold",
+    size = 20,
+    color='royalblue')
+ax2.axis("off")
+
+v = 0
+
+for jogador in pd.unique(df_comp.Jogador):
+    
+    aux_df = df_comp[df_comp.Jogador == jogador].loc[:, df_comp.columns != 'Jogador']
+    aux_df = aux_df.loc[:, aux_df.columns != 'Equipe atual']
+    aux_df = aux_df.loc[:, aux_df.columns != 'Equipe no ano']
+    aux_df = aux_df.loc[:, aux_df.columns != 'Posição']
+    aux_df = aux_df.loc[:, aux_df.columns != 'Idade']
+    
+    aux_df = aux_df.reset_index(drop=True)
+    
+    categories = aux_df.columns.tolist()
+    categories.append(categories[0])
+    
+    r = aux_df[0:1].values.tolist()
+    lista_raio = []
+    for item in r:
+        t = 0
+        while t < len(item):
+            lista_raio.append(item[t])
+            t += 1
+    
+    lista_raio.append(lista_raio[0])
+    
+    
+    label_loc = np.linspace(start=0, stop=2 * np.pi, num=len(lista_raio))
+    
+    lista_axs[v].plot(label_loc,lista_raio, label=jogador,marker='.')
+    
+    '''lista_axs[v].set_title(jogador,fontsize = 14,fontweight='bold',color='darkblue')'''
+    
+    lista_axs[v].set_thetagrids(np.degrees(label_loc), labels=categories)
+    
+    lista_axs[v].set_facecolor('aliceblue')
+    
+    lista_axs[v].set_rticks([0,1,2,3,4,5,6])
+    
+    lista_axs[v].set_ylim(0,7)
+    
+    lista_axs[v].fill(label_loc,lista_raio,alpha=0.2)
+    
+    lista_axs[v].legend()
+
+
