@@ -15,7 +15,10 @@ min_max = int(np.nanmax(base['Minutos jogados:']))
 
 min_min = st.slider("Minutagem mínima para analisar:",0,min_max)
 
-idade_max = st.text_input('Idade máxima para analisar:')
+idade_min = int(np.nanmin(base['Idade']))
+idade_max = int(np.nanmax(base['Idade']))
+
+idade_max = st.slider('Idade máxima para analisar:',idade_min,idade_max)
 
 posicao = float(posicao)
 min_min = int(min_min)
