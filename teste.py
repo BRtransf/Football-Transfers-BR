@@ -61,9 +61,13 @@ for item in dic_posicoes[posicao]:
     
 
 df_resumo = base[lista_cols].copy()
-df_resumo = df_resumo[(df_resumo['Minutos jogados:'] >= min_min)&(df_resumo.Idade<=idade_max)].reset_index(drop=True)
 
 st.write(df_resumo)
+
+
+df_resumo = df_resumo[(df_resumo['Minutos jogados:'] >= min_min)&(df_resumo.Idade<=idade_max)].reset_index(drop=True)
+
+
 
 
 
