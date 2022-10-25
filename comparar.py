@@ -13,7 +13,7 @@ for ano in lista_anos:
   for item in range(1,3):
     arquivo = 'BRA1-'+ano+'-'+str(item)+'.csv'
     df = pd.read_csv(arquivo,sep=';',decimal=',')
-    df['Ano'] = ano
+    df['Ano'] = int(ano)
     base = base.append(df).drop_duplicates().reset_index(drop=True)
 
 base = base.rename(columns={"Equipa dentro de um período de tempo seleccionado":"Equipe no ano","Equipa":"Equipe atual"})
@@ -64,3 +64,12 @@ else:
     base2 = base[base.Jogador == nome_busca2]
     st.write(base2)    
     
+ano1min = np.nanmin(base1.Ano)
+ano1max = np.nanmax(base1.Ano)
+ano2min = np.nanmin(base2.Ano)
+ano2max = np.nanmax(base2.Ano)
+
+values = st.slider(
+...     'Select a range of values',
+...     0.0, 100.0, (25.0, 75.0))
+>>> st.write('Values:', values)
