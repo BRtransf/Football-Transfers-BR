@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-base = pd.concat([pd.read_csv('base1.csv',sep=';'),pd.read_csv('base2.csv',sep=';')]).drop_duplicates(['Jogador','Equipa','Minutos jogados:'])
+base = pd.concat([pd.read_csv('base1.csv',sep=';',decimal=','),pd.read_csv('base2.csv',sep=';',decimal=',')]).drop_duplicates(['Jogador','Equipa','Minutos jogados:'])
 
       
 st.write(len(base))
@@ -102,7 +102,6 @@ for coluna in dic_posicoes[posicao]:
     t = 0
 
     while t < len(df_resumo):
-        df_resumo[coluna] = df_resumo[coluna].replace(',','.')
         df_resumo[coluna] = df_resumo[coluna].astype('float64')
         df_radar[coluna][t] = (df_resumo[coluna][t] - np.nanmin(df_resumo[coluna]))/abs(np.nanmax(df_resumo[coluna])-np.nanmin(df_resumo[coluna]))
         t += 1
