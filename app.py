@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from shapely.geometry import Polygon
 from matplotlib import pyplot as plt
 from PIL import Image
 
