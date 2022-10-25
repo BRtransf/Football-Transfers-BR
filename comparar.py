@@ -9,7 +9,7 @@ st.write(base)
 nome_busca1 = st.text_input("Nome do primeiro jogador:")
 
 if len(base[base.Jogador==nome_busca1]) == 0:
-  st.write("Favor inserir o nome do jogador igual no WyScout)")
+  st.write("Favor inserir o nome do jogador igual no WyScout")
 
 elif len(base[base.Jogador==nome_busca1]['Jogador'])>1:
   st.write(base[base.Jogador==nome_busca1])
