@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-data_url = ("https://github.com//BRtransf/Football-Transfers-BR/blob/main/base1.xlsx?raw=true")
-
-base = pd.read_excel(data_url)
+base = pd.read_csv('base1.csv')
 
 st.write(base)
