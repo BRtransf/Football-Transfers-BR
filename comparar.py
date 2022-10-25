@@ -159,3 +159,5 @@ for jogador in pd.unique(df_comp.Jogador):
     lista_axs[v].legend()
 
 st.pyplot(fig)
+
+''' está aparecendo só a primeira linha de cada jogador, precisa somar'''
