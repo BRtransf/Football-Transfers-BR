@@ -234,5 +234,3 @@ fig.legend()
 
 st.subheader("Radar de Comparação\n"+nome_busca1 + " ("+str(anos1[0])+" a "+str(anos1[1]) + ") X "+nome_busca2+ " ("+str(anos2[0]) + " a "+str(anos2[1])+")")
 st.pyplot(fig)
-
-''' está aparecendo só a primeira linha de cada jogador, precisa somar'''
