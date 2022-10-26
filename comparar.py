@@ -130,7 +130,7 @@ df = pd.concat([base1[(base1.Ano>=anos1[0])&(base1.Ano<=anos1[1])],base2[(base2.
 
 st.subheader("Variáveis para comparação")
 vars = st.multiselect(label = 'Selecione as variáveis desejadas',options=df.columns[7:])
-lista_vars = ['ID','Jogador','Equipe atual','Equipe no ano','Liga','Posição','Idade']
+lista_vars = ['ID','Jogador','Pé','Altura','Equipe atual','Equipe no ano','Liga','Posição','Idade']
 for var in vars:
   lista_vars.append(str(var))
   
@@ -140,7 +140,7 @@ st.write(df_comp)
 
 lista_ranges = []
 
-for coluna in df_comp.columns[7:]:
+for coluna in df_comp.columns[9:]:
   if coluna in vars_abs:
     top1 = df_comp[df_comp.ID == pd.unique(df_comp.ID)[0]][coluna].sum()
     top2 = df_comp[df_comp.ID == pd.unique(df_comp.ID)[1]][coluna].sum()
@@ -220,7 +220,7 @@ class ComplexRadar():
         
         
         
-categorias = lista_vars[7:]
+categorias = lista_vars[9:]
 
 fig = plt.figure(figsize = (8,8))
 
@@ -229,6 +229,16 @@ try:
 
   for jogador in pd.unique(df_comp.ID):
       nome = df_comp[df_comp.ID == jogador]['Jogador'].tolist()[0]
+      if df_comp[df_comp.ID == jogador]['Pé'].tolist()[0] == 'direito':
+        pe = 'Destro'
+      elif df_comp[df_comp.ID == jogador]['Pé'].tolist()[0] == 'esquerdo':
+        pe = 'Canhoto'
+      elif df_comp[df_comp.ID == jogador]['Pé'].tolist()[0] == 'ambos':
+        pe = 'Ambidestro'
+      else:
+        pe = 'Desconhecido'
+        
+      altura = df_comp[df_comp.ID == jogador]['Altura'].tolist()[0]
 
       aux_df = df_comp[df_comp.ID == jogador].loc[:, df_comp.columns != 'Jogador']
       aux_df = aux_df.loc[:, aux_df.columns != 'Equipe atual']
@@ -237,6 +247,8 @@ try:
       aux_df = aux_df.loc[:, aux_df.columns != 'Idade']
       aux_df = aux_df.loc[:, aux_df.columns != 'ID']
       aux_df = aux_df.loc[:, aux_df.columns != 'Liga']
+      aux_df = aux_df.loc[:, aux_df.columns != 'Pé']
+      aux_df = aux_df.loc[:, aux_df.columns != 'Altura']
 
       aux_df = aux_df.reset_index(drop=True)
 
@@ -247,8 +259,9 @@ try:
           lista_valores.append(aux_df[coluna].sum())
         else:
           lista_valores.append(aux_df[coluna].mean())
-
-      radar.plot(lista_valores,label=nome)
+      
+      legenda = nome + "(" + str(altura) +"; Pé: "+pe)
+      radar.plot(lista_valores,label=legenda)
 
 
   fig.legend()
