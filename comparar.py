@@ -260,7 +260,7 @@ try:
         else:
           lista_valores.append(aux_df[coluna].mean())
       
-      legenda = nome + "( " + str(altura) +"cm; Pé: "+pe+")
+      legenda = nome + " (" + str(altura) +"cm; Pé: "+pe+")"
       radar.plot(lista_valores,label=legenda)
 
 
