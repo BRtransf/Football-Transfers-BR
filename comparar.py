@@ -211,31 +211,35 @@ categorias = lista_vars[7:]
 
 fig = plt.figure(figsize = (8,8))
 
-radar = ComplexRadar(fig,categorias,lista_ranges)
+try:
+  radar = ComplexRadar(fig,categorias,lista_ranges)
 
-for jogador in pd.unique(df_comp.ID):
-    nome = df_comp[df_comp.ID == jogador]['Jogador'].tolist()[0]
-    
-    aux_df = df_comp[df_comp.ID == jogador].loc[:, df_comp.columns != 'Jogador']
-    aux_df = aux_df.loc[:, aux_df.columns != 'Equipe atual']
-    aux_df = aux_df.loc[:, aux_df.columns != 'Equipe no ano']
-    aux_df = aux_df.loc[:, aux_df.columns != 'Posição']
-    aux_df = aux_df.loc[:, aux_df.columns != 'Idade']
-    aux_df = aux_df.loc[:, aux_df.columns != 'ID']
-    aux_df = aux_df.loc[:, aux_df.columns != 'Liga']
-    
-    aux_df = aux_df.reset_index(drop=True)
-    
-    lista_valores = []
-    
-    for coluna in aux_df.columns:
-      lista_valores.append(aux_df[coluna].sum())
-    
-    radar.plot(lista_valores,label=nome)
-    
+  for jogador in pd.unique(df_comp.ID):
+      nome = df_comp[df_comp.ID == jogador]['Jogador'].tolist()[0]
 
-fig.legend()
+      aux_df = df_comp[df_comp.ID == jogador].loc[:, df_comp.columns != 'Jogador']
+      aux_df = aux_df.loc[:, aux_df.columns != 'Equipe atual']
+      aux_df = aux_df.loc[:, aux_df.columns != 'Equipe no ano']
+      aux_df = aux_df.loc[:, aux_df.columns != 'Posição']
+      aux_df = aux_df.loc[:, aux_df.columns != 'Idade']
+      aux_df = aux_df.loc[:, aux_df.columns != 'ID']
+      aux_df = aux_df.loc[:, aux_df.columns != 'Liga']
+
+      aux_df = aux_df.reset_index(drop=True)
+
+      lista_valores = []
+
+      for coluna in aux_df.columns:
+        lista_valores.append(aux_df[coluna].sum())
+
+      radar.plot(lista_valores,label=nome)
 
 
-st.subheader("Radar de Comparação\n"+nome_busca1 + " ("+str(anos1[0])+" a "+str(anos1[1]) + ") X "+nome_busca2+ " ("+str(anos2[0]) + " a "+str(anos2[1])+")")
-st.pyplot(fig)
+  fig.legend()
+
+
+  st.subheader("Radar de Comparação\n"+nome_busca1 + " ("+str(anos1[0])+" a "+str(anos1[1]) + ") X "+nome_busca2+ " ("+str(anos2[0]) + " a "+str(anos2[1])+")")
+  st.pyplot(fig)
+  
+except:
+  st.write("Por favor selecione ao menos 2 variáveis de comparação")
