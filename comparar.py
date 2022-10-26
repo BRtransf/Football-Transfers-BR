@@ -19,8 +19,23 @@ for ano in lista_anos:
     base = base.append(df).drop_duplicates().reset_index(drop=True)
 
 base = base.rename(columns={"Equipa dentro de um período de tempo seleccionado":"Equipe no ano","Equipa":"Equipe atual"})
-    
+base = base.reset_index(drop=True)
+
+st.subheader('Resumo da Base de Dados')
 st.write(base[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
+
+st.subheader('Busca Rápida')
+pesq_rap = st.text_input('Digite o nome desejado:')
+
+lista_results = []
+nomes = pd.unique(base.Jogador).tolist()
+t = 0
+while t<len(nomes):
+  if pesq_rap in nomes[t]:
+    lista_results.append(nomes[t])
+  t += 1
+
+st.write(base[base.Jogador.isin(lista_results)])
 
 st.subheader('Jogador 1')
 nome_busca1 = st.text_input("Nome do primeiro jogador:")
