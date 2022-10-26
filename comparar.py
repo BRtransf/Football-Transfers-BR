@@ -8,21 +8,25 @@ from matplotlib import pyplot as plt
 lista_anos = []
 for ano in range(2018,2022):
   lista_anos.append(str(ano))
+  
+lista_ligas = ['BRA1','BRA2']
 
 base = pd.DataFrame() 
 
 for ano in lista_anos:
-  for item in range(1,3):
-    arquivo = 'BRA1-'+ano+'-'+str(item)+'.csv'
-    df = pd.read_csv(arquivo,sep=';',decimal=',')
-    df['Ano'] = int(ano)
-    base = base.append(df).drop_duplicates().reset_index(drop=True)
+  for liga in lista_ligas:
+    for item in range(1,3):
+      arquivo = str(liga)+'-'+ano+'-'+str(item)+'.csv'
+      df = pd.read_csv(arquivo,sep=';',decimal=',')
+      df['Ano'] = int(ano)
+      df['Liga'] = liga
+      base = base.append(df).drop_duplicates().reset_index(drop=True)
 
 base = base.rename(columns={"Equipa dentro de um período de tempo seleccionado":"Equipe no ano","Equipa":"Equipe atual"})
 base = base.reset_index(drop=True)
 
 st.subheader('Resumo da Base de Dados')
-st.write(base[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
+st.write(base[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano','Liga']])
 
 st.subheader('Busca Rápida')
 pesq_rap = st.text_input('Digite o nome desejado:')
@@ -35,7 +39,7 @@ while t<len(nomes):
     lista_results.append(nomes[t])
   t += 1
 
-st.write(base[base.Jogador.isin(lista_results)][['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
+st.write(base[base.Jogador.isin(lista_results)][['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano','Liga']])
 
 st.subheader('Jogador 1')
 nome_busca1 = st.text_input("Nome do primeiro jogador:")
@@ -45,24 +49,24 @@ if len(base[base.Jogador==nome_busca1]) == 0:
 
 elif len(pd.unique(base[base.Jogador==nome_busca1]['Equipe atual']))>1:
   st.write("Mais de um jogador disponível com este nome, favor inserir o clube atual do jogador desejado.")
-  st.write(base[base.Jogador==nome_busca1][['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
+  st.write(base[base.Jogador==nome_busca1][['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano','Liga']])
   clube1 = st.text_input("Clube do primeiro jogador:")
   if len(pd.unique(base[(base.Jogador==nome_busca1)&(base["Equipe atual"] == clube1)]['Idade']))>1:
     st.write("Mais de um jogador disponível com este nome/clube, favor inserir a idade atual do jogador desejado.")
-    st.write(base[(base.Jogador==nome_busca1)&(base["Equipe atual"] == clube1)][['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
+    st.write(base[(base.Jogador==nome_busca1)&(base["Equipe atual"] == clube1)][['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano','Liga']])
     idade1 = int(st.text_input("Idade do primeiro jogador:"))
     st.write("Tabela resumo do jogador desejado:")
     base1 = base[(base.Jogador==nome_busca1)&(base["Equipe atual"] == clube1)&(base.Idade==idade1)]
-    st.write(base1[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
+    st.write(base1[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano','Liga']])
   else:
     base1 = base[(base.Jogador==nome_busca1)&(base["Equipe atual"] == clube1)]
     st.write("Tabela resumo do jogador desejado:")
-    st.write(base1[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
+    st.write(base1[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano','Liga']])
                  
 else:
     base1 = base[base.Jogador == nome_busca1]
     st.write("Tabela resumo do jogador desejado:")
-    st.write(base1[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
+    st.write(base1[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano','Liga']])
 
 base1 = base1.assign(ID = 1)    
 
@@ -74,24 +78,24 @@ if len(base[base.Jogador==nome_busca2]) == 0:
 
 elif len(pd.unique(base[base.Jogador==nome_busca2]['Equipe atual']))>1:
   st.write("Mais de um jogador disponível com este nome, favor inserir o clube atual do jogador desejado.")
-  st.write(base[base.Jogador==nome_busca2][['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
+  st.write(base[base.Jogador==nome_busca2][['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano','Liga']])
   clube2 = st.text_input("Clube do segundo jogador:")
   if len(pd.unique(base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)]['Idade']))>1:
     st.write("Mais de um jogador disponível com este nome/clube, favor inserir a idade atual do jogador desejado.")
-    st.write(base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)][['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
+    st.write(base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)][['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano','Liga']])
     idade2 = int(st.text_input("Idade do segundo jogador:"))
     base2 = base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)&(base.Idade==idade2)]
     st.write("Tabela resumo do jogador desejado:")
-    st.write(base2[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
+    st.write(base2[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano','Liga']])
   else:
     base2 = base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)]
     st.write("Tabela resumo do jogador desejado:")
-    st.write(base2[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
+    st.write(base2[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano','Liga']])
                  
 else:
     base2 = base[base.Jogador == nome_busca2]
     st.write("Tabela resumo do jogador desejado:")
-    st.write(base2[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])    
+    st.write(base2[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano','Liga']])    
 
 base2 = base2.assign(ID = 2)       
 
@@ -117,7 +121,7 @@ else:
 df = pd.concat([base1[(base1.Ano>=anos1[0])&(base1.Ano<=anos1[1])],base2[(base2.Ano>=anos2[0])&(base2.Ano<=anos2[1])]])
 
 vars = st.multiselect(label = 'Variáveis de comparação',options=df.columns[7:])
-lista_vars = ['ID','Jogador','Equipe atual','Equipe no ano','Posição','Idade']
+lista_vars = ['ID','Jogador','Equipe atual','Equipe no ano','Liga','Posição','Idade']
 for var in vars:
   lista_vars.append(str(var))
   
@@ -218,6 +222,7 @@ for jogador in pd.unique(df_comp.ID):
     aux_df = aux_df.loc[:, aux_df.columns != 'Posição']
     aux_df = aux_df.loc[:, aux_df.columns != 'Idade']
     aux_df = aux_df.loc[:, aux_df.columns != 'ID']
+    aux_df = aux_df.loc[:, aux_df.columns != 'Liga']
     
     aux_df = aux_df.reset_index(drop=True)
     
