@@ -186,6 +186,7 @@ for jogador in pd.unique(df_comp.ID):
     aux_df = aux_df.loc[:, aux_df.columns != 'Equipe no ano']
     aux_df = aux_df.loc[:, aux_df.columns != 'Posição']
     aux_df = aux_df.loc[:, aux_df.columns != 'Idade']
+    aux_df = aux_df.loc[:, aux_df.columns != 'ID']
     
     aux_df = aux_df.reset_index(drop=True)
     
