@@ -101,11 +101,16 @@ df_comp = df[lista_vars].copy()
 st.write(df_comp)
 
 lista_ranges = []
-for coluna in df_comp.columns[6:]:
-  lista_ranges.append((0.85*np.nanmin(df_comp[coluna]),df_comp[coluna].sum()))
-  
-st.write(lista_ranges)
 
+for coluna in df_comp.columns[6:]:
+  top1 = df_comp[df_comp.ID == pd.unique(df_comp.ID)[0]][coluna].sum()
+  top2 = df_comp[df_comp.ID == pd.unique(df_comp.ID)[1]][coluna].sum()
+  
+  if top1 > top2:
+    lista_ranges.append((0.85*np.nanmin(df_comp[coluna]),top1))
+  elif top2 >= top1:
+    lista_ranges.append((0.85*np.nanmin(df_comp[coluna]),top2))
+    
 
 def _invert(x, limits):
     """inverts a value x on a scale from
@@ -195,7 +200,6 @@ for jogador in pd.unique(df_comp.ID):
     for coluna in aux_df.columns:
       lista_valores.append(aux_df[coluna].sum())
     
-    st.write(lista_valores)
     radar.plot(lista_valores)
     
 
