@@ -95,8 +95,7 @@ vars = st.multiselect(label = 'Variáveis de comparação',options=df.columns[7:
 lista_vars = ['Jogador','Equipe atual','Equipe no ano','Posição','Idade']
 for var in vars:
   lista_vars.append(str(var))
-
-st.write(lista_vars)
+  
 df_comp = df[lista_vars].copy()
 
 st.write(df_comp)
