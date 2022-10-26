@@ -212,8 +212,9 @@ for jogador in pd.unique(df_comp.ID):
     
     radar.plot(lista_valores)
     
+    
 
-
+fig.legend()
     
 st.pyplot(fig)
 
