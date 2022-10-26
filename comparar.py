@@ -165,6 +165,13 @@ for jogador in pd.unique(df_comp.ID):
         while t < len(item):
             lista_raio.append(item[t])
             t += 1
-          
+
+categorias = lista_vars[6:]
+
+fig = plt.figure(figsize = (8,8))
+
+radar = ComplexRadar(fig,categorias,lista_ranges)
+
+st.pyplot(fig)
 
 ''' está aparecendo só a primeira linha de cada jogador, precisa somar'''
