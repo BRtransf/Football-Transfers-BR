@@ -106,14 +106,12 @@ ano2max = int(np.nanmax(base2.Ano))
 
 if ano1min < ano1max:
   anos1 = st.slider('Anos analisados para '+nome_busca1,ano1min, ano1max, (ano1min, ano1max))
-  st.write('Values:', anos1)
 else:
   st.write(nome_busca1 + " somente disponível em "+str(ano1min))
   anos1 = [ano1min,ano1max]
 
 if ano2min < ano2max:
   anos2 = st.slider('Anos analisados para '+nome_busca2,ano2min, ano2max, (ano2min, ano2max))
-  st.write('Values:', anos2)
 else:
   st.write(nome_busca2 + " somente disponível em "+str(ano2min))
   anos2 = [ano2min,ano2max]
