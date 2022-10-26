@@ -75,11 +75,19 @@ ano1max = int(np.nanmax(base1.Ano))
 ano2min = int(np.nanmin(base2.Ano))
 ano2max = int(np.nanmax(base2.Ano))
 
-anos1 = st.slider('Anos analisados para Jogador 1',ano1min, ano1max, (ano1min, ano1max))
-st.write('Values:', anos1)
+if ano1min < ano1max:
+  anos1 = st.slider('Anos analisados para Jogador 1',ano1min, ano1max, (ano1min, ano1max))
+  st.write('Values:', anos1)
+else:
+  st.write("Jogador somente disponível em "+str(ano1min)
+  anos1 = [ano1min,ano1max]
 
-anos2 = st.slider('Anos analisados para Jogador 2',ano2min, ano2max, (ano2min, ano2max))
-st.write('Values:', anos2)
+if ano2min < ano2max:
+  anos2 = st.slider('Anos analisados para Jogador 2',ano2min, ano2max, (ano2min, ano2max))
+  st.write('Values:', anos2)
+else:
+  st.write("Jogador somente disponível em "+str(ano2min)
+  anos2 = [ano2min,ano2max]
 
 df = pd.concat([base1[(base1.Ano>=anos1[0])&(base1.Ano<=anos1[1])],base2[(base2.Ano>=anos2[0])&(base2.Ano<=anos2[1])]])
 
