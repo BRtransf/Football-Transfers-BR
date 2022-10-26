@@ -181,7 +181,7 @@ radar = ComplexRadar(fig,categorias,lista_ranges)
 
 for jogador in pd.unique(df_comp.ID):
     
-    aux_df = df_comp[df_comp.Jogador == jogador].loc[:, df_comp.columns != 'Jogador']
+    aux_df = df_comp[df_comp.ID == jogador].loc[:, df_comp.columns != 'Jogador']
     aux_df = aux_df.loc[:, aux_df.columns != 'Equipe atual']
     aux_df = aux_df.loc[:, aux_df.columns != 'Equipe no ano']
     aux_df = aux_df.loc[:, aux_df.columns != 'Posição']
