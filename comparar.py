@@ -35,7 +35,7 @@ while t<len(nomes):
     lista_results.append(nomes[t])
   t += 1
 
-st.write(base[base.Jogador.isin(lista_results)])
+st.write(base[base.Jogador.isin(lista_results)][['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
 
 st.subheader('Jogador 1')
 nome_busca1 = st.text_input("Nome do primeiro jogador:")
