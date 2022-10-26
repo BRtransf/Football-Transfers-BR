@@ -107,9 +107,9 @@ for coluna in df_comp.columns[6:]:
   top2 = df_comp[df_comp.ID == pd.unique(df_comp.ID)[1]][coluna].sum()
   
   if top1 > top2:
-    lista_ranges.append((0.85*np.nanmin(df_comp[coluna]),top1))
+    lista_ranges.append((0.85*np.nanmin(df_comp[coluna]),top1*1.1))
   elif top2 >= top1:
-    lista_ranges.append((0.85*np.nanmin(df_comp[coluna]),top2))
+    lista_ranges.append((0.85*np.nanmin(df_comp[coluna]),top2*1.1))
     
 
 def _invert(x, limits):
