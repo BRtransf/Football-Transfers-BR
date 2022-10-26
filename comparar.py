@@ -193,9 +193,10 @@ for jogador in pd.unique(df_comp.ID):
     
     for coluna in aux_df.columns:
       lista_valores.append(aux_df[coluna].sum())
-      
-    radar.plot(lista_valores)
+    
     st.write(lista_valores)
+    radar.plot(lista_valores)
+    
 
 
     
