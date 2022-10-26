@@ -131,7 +131,7 @@ st.write(df_comp)
 
 lista_ranges = []
 
-for coluna in df_comp.columns[6:]:
+for coluna in df_comp.columns[7:]:
   top1 = df_comp[df_comp.ID == pd.unique(df_comp.ID)[0]][coluna].sum()
   top2 = df_comp[df_comp.ID == pd.unique(df_comp.ID)[1]][coluna].sum()
   
@@ -207,7 +207,7 @@ class ComplexRadar():
         
         
         
-categorias = lista_vars[6:]
+categorias = lista_vars[7:]
 
 fig = plt.figure(figsize = (8,8))
 
