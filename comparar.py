@@ -25,6 +25,15 @@ for ano in lista_anos:
 base = base.rename(columns={"Equipa dentro de um período de tempo seleccionado":"Equipe no ano","Equipa":"Equipe atual"})
 base = base.reset_index(drop=True)
 
+
+vars_abs = ['Golos','Golos esperados','Assistências','Assistências esperadas','Cortes de carrinho ajust. à posse',
+            'Cartões amarelos','Cartões vermelhos','Golos sem ser por penálti','Golos de cabeça','Remate',
+            'Comprimento médio de passes, m','Comprimento médio de passes longos, m','Golos sofridos','Remates sofridos',
+            'Jogos sem sofrer golos','Golos sofridos esperados','Golos expectáveis defendidos','Penaltis marcados']
+
+
+
+
 st.subheader('Resumo da Base de Dados')
 st.write(base[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano','Liga']])
 
@@ -132,8 +141,12 @@ st.write(df_comp)
 lista_ranges = []
 
 for coluna in df_comp.columns[7:]:
-  top1 = df_comp[df_comp.ID == pd.unique(df_comp.ID)[0]][coluna].sum()
-  top2 = df_comp[df_comp.ID == pd.unique(df_comp.ID)[1]][coluna].sum()
+  if coluna in vars_abs:
+    top1 = df_comp[df_comp.ID == pd.unique(df_comp.ID)[0]][coluna].sum()
+    top2 = df_comp[df_comp.ID == pd.unique(df_comp.ID)[1]][coluna].sum()
+  else:
+    top1 = np.nanmax(df_comp[df_comp.ID == pd.unique(df_comp.ID)[0]][coluna].mean())
+    top2 = np.nanmax(df_comp[df_comp.ID == pd.unique(df_comp.ID)[1]][coluna].mean())
   
   if top1 > top2:
     lista_ranges.append((0.85*np.nanmin(df_comp[coluna]),top1*1.1))
@@ -230,7 +243,10 @@ try:
       lista_valores = []
 
       for coluna in aux_df.columns:
-        lista_valores.append(aux_df[coluna].sum())
+        if coluna in vars_abs:
+          lista_valores.append(aux_df[coluna].sum())
+        else:
+          lista_valores.append(aux_df[coluna].mean())
 
       radar.plot(lista_valores,label=nome)
 
