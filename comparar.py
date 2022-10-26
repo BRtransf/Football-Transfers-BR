@@ -118,7 +118,9 @@ else:
 
 df = pd.concat([base1[(base1.Ano>=anos1[0])&(base1.Ano<=anos1[1])],base2[(base2.Ano>=anos2[0])&(base2.Ano<=anos2[1])]])
 
-vars = st.multiselect(label = 'Variáveis de comparação',options=df.columns[7:])
+
+st.subheader("Variáveis para comparação")
+vars = st.multiselect(label = 'Selecione as variáveis desejadas',options=df.columns[7:])
 lista_vars = ['ID','Jogador','Equipe atual','Equipe no ano','Liga','Posição','Idade']
 for var in vars:
   lista_vars.append(str(var))
