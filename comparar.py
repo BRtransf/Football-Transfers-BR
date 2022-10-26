@@ -230,7 +230,9 @@ for jogador in pd.unique(df_comp.ID):
     
 
 fig.legend()
-    
+
+
+st.subheader("Radar de Comparação\n"nome_busca1 + " ("+anos1[0]+" a "+anos1[1] + ") X "+nome_busca2 " ("+anos2[0] + " a "+anos2[1]+")")
 st.pyplot(fig)
 
 ''' está aparecendo só a primeira linha de cada jogador, precisa somar'''
