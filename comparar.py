@@ -35,14 +35,14 @@ elif len(pd.unique(base[base.Jogador==nome_busca1]['Equipe atual']))>1:
     st.write(base[(base.Jogador==nome_busca1)&(base["Equipe atual"] == clube1)])
     idade1 = int(st.text_input("Idade do primeiro jogador:"))
     base1 = base[(base.Jogador==nome_busca1)&(base["Equipe atual"] == clube1)&(base.Idade==idade1)]
-    st.write(base1)
+    st.write(base1[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
   else:
     base1 = base[(base.Jogador==nome_busca1)&(base["Equipe atual"] == clube1)]
-    st.write(base1)
+    st.write(base1[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
                  
 else:
     base1 = base[base.Jogador == nome_busca1]
-    st.write(base1)
+    st.write(base1[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
 
 base1 = base1.assign(ID = 1)    
 
@@ -59,14 +59,14 @@ elif len(pd.unique(base[base.Jogador==nome_busca2]['Equipe atual']))>1:
     st.write(base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)])
     idade2 = int(st.text_input("Idade do segundo jogador:"))
     base2 = base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)&(base.Idade==idade2)]
-    st.write(base2)
+    st.write(base2[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
   else:
     base2 = base[(base.Jogador==nome_busca2)&(base["Equipe atual"] == clube2)]
-    st.write(base2)
+    st.write(base2[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])
                  
 else:
     base2 = base[base.Jogador == nome_busca2]
-    st.write(base2)    
+    st.write(base2[['Jogador','Equipe atual','Equipe no ano','Minutos jogados:','Ano']])    
 
 base2 = base2.assign(ID = 2)       
 
