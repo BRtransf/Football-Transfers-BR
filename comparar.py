@@ -79,14 +79,14 @@ if ano1min < ano1max:
   anos1 = st.slider('Anos analisados para Jogador 1',ano1min, ano1max, (ano1min, ano1max))
   st.write('Values:', anos1)
 else:
-  st.write("Jogador 1 somente disponível em "+str(ano1min))
+  st.write(nome_busca1 + " somente disponível em "+str(ano1min))
   anos1 = [ano1min,ano1max]
 
 if ano2min < ano2max:
   anos2 = st.slider('Anos analisados para Jogador 2',ano2min, ano2max, (ano2min, ano2max))
   st.write('Values:', anos2)
 else:
-  st.write("Jogador 2 somente disponível em "+str(ano2min))
+  st.write(nome_busca2 + " somente disponível em "+str(ano2min))
   anos2 = [ano2min,ano2max]
 
 df = pd.concat([base1[(base1.Ano>=anos1[0])&(base1.Ano<=anos1[1])],base2[(base2.Ano>=anos2[0])&(base2.Ano<=anos2[1])]])
