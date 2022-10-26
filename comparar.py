@@ -102,7 +102,7 @@ st.write(df_comp)
 
 lista_ranges = []
 for coluna in df_comp.columns[6:]:
-  lista_ranges.append((0.85*np.nanmin(df_comp[coluna]),1.15*np.nanmax(df_comp[coluna].sum())))
+  lista_ranges.append((0.85*np.nanmin(df_comp[coluna]),df_comp[coluna].sum()))
   
 st.write(lista_ranges)
 
