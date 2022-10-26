@@ -212,6 +212,7 @@ for jogador in pd.unique(df_comp.ID):
       lista_valores.append(aux_df[coluna].sum())
     
     radar.plot(lista_valores,label=nome)
+    st.write(lista_valores)
     
     
 
