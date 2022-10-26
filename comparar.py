@@ -183,7 +183,7 @@ class ComplexRadar():
                  n_ordinate_levels=6):
         angles = np.arange(0, 360, 360./len(variables))
 
-        axes = [fig.add_axes([0.18,0.18,0.82,0.82],polar=True,
+        axes = [fig.add_axes([0.1,0.1,0.9,0.9],polar=True,
                 label = "axes{}".format(i)) 
                 for i in range(len(variables))]
         l, text = axes[0].set_thetagrids(angles, 
