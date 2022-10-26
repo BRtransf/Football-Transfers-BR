@@ -195,7 +195,7 @@ fig = plt.figure(figsize = (8,8))
 radar = ComplexRadar(fig,categorias,lista_ranges)
 
 for jogador in pd.unique(df_comp.ID):
-    nome = df_comp[df_comp.ID == jogador]['Jogador']
+    nome = df_comp[df_comp.ID == jogador]['Jogador'].tolist()[0]
     
     aux_df = df_comp[df_comp.ID == jogador].loc[:, df_comp.columns != 'Jogador']
     aux_df = aux_df.loc[:, aux_df.columns != 'Equipe atual']
