@@ -195,8 +195,10 @@ for jogador in pd.unique(df_comp.ID):
       lista_valores.append(aux_df[coluna].sum())
       
     radar.plot(lista_valores)
+    st.write(lista_valores)
 
 
+    
 st.pyplot(fig)
 
 ''' está aparecendo só a primeira linha de cada jogador, precisa somar'''
