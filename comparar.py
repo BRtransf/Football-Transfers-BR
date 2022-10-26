@@ -92,7 +92,7 @@ else:
 df = pd.concat([base1[(base1.Ano>=anos1[0])&(base1.Ano<=anos1[1])],base2[(base2.Ano>=anos2[0])&(base2.Ano<=anos2[1])]])
 
 vars = st.multiselect(label = 'Variáveis de comparação',options=df.columns[7:])
-lista_vars = ['Jogador','Equipe atual','Equipe no ano','Posição','Idade']
+lista_vars = ['ID','Jogador','Equipe atual','Equipe no ano','Posição','Idade']
 for var in vars:
   lista_vars.append(str(var))
   
@@ -100,32 +100,53 @@ df_comp = df[lista_vars].copy()
 
 st.write(df_comp)
 
+lista_ranges = []
+for coluna in df_comp.columns[6:]:
+  lista_ranges.append((0.85*np.nanmin(df_comp[coluna]),1.15*np.nanmin(df_comp[coluna])))
+  
+st.write(lista_ranges)
+  
+class ComplexRadar():
+    def __init__(self, fig, variables, ranges,
+                 n_ordinate_levels=6):
+        angles = np.arange(0, 360, 360./len(variables))
 
-
-fig = plt.figure(figsize = (8,8), tight_layout=True, facecolor='aliceblue')
-
-gs = fig.add_gridspec(5,4)
-ax1 = fig.add_subplot(gs[0, 0])
-ax2 = fig.add_subplot(gs[0, 1:])
-ax3 = fig.add_subplot(gs[1:5, 0:4],polar = True)
-
-
-lista_axs = [ax3]
-
-ax1.axis("off")
-
-ax2.annotate(xy = (0, .5),
-    text = 'Comparação: '+ pd.unique(df_comp.Jogador.tolist())[0]+' X '+pd.unique(df_comp.Jogador.tolist())[1],
-    ha = "left",
-    va = "center",
-    weight = "bold",
-    size = 20,
-    color='royalblue')
-ax2.axis("off")
-
-v = 0
-
-for jogador in pd.unique(df_comp.Jogador):
+        axes = [fig.add_axes([0.1,0.1,0.9,0.9],polar=True,
+                label = "axes{}".format(i)) 
+                for i in range(len(variables))]
+        l, text = axes[0].set_thetagrids(angles, 
+                                         labels=variables)
+        [txt.set_rotation(angle-90) for txt, angle 
+             in zip(text, angles)]
+        for ax in axes[1:]:
+            ax.patch.set_visible(False)
+            ax.grid("off")
+            ax.xaxis.set_visible(False)
+        for i, ax in enumerate(axes):
+            grid = np.linspace(*ranges[i], 
+                               num=n_ordinate_levels)
+            gridlabel = ["{}".format(round(x,2)) 
+                         for x in grid]
+            if ranges[i][0] > ranges[i][1]:
+                grid = grid[::-1] # hack to invert grid
+                          # gridlabels aren't reversed
+            gridlabel[0] = "" # clean up origin
+            ax.set_rgrids(grid, labels=gridlabel,
+                         angle=angles[i])
+            #ax.spines["polar"].set_visible(False)
+            ax.set_ylim(*ranges[i])
+        # variables for plotting
+        self.angle = np.deg2rad(np.r_[angles, angles[0]])
+        self.ranges = ranges
+        self.ax = axes[0]
+    def plot(self, data, *args, **kw):
+        sdata = _scale_data(data, self.ranges)
+        self.ax.plot(self.angle, np.r_[sdata, sdata[0]], *args, **kw)
+    def fill(self, data, *args, **kw):
+        sdata = _scale_data(data, self.ranges)
+        self.ax.fill(self.angle, np.r_[sdata, sdata[0]], *args, **kw)
+        
+for jogador in pd.unique(df_comp.ID):
     
     aux_df = df_comp[df_comp.Jogador == jogador].loc[:, df_comp.columns != 'Jogador']
     aux_df = aux_df.loc[:, aux_df.columns != 'Equipe atual']
@@ -136,7 +157,6 @@ for jogador in pd.unique(df_comp.Jogador):
     aux_df = aux_df.reset_index(drop=True)
     
     categories = aux_df.columns.tolist()
-    categories.append(categories[0])
     
     r = aux_df[0:1].values.tolist()
     lista_raio = []
@@ -145,26 +165,6 @@ for jogador in pd.unique(df_comp.Jogador):
         while t < len(item):
             lista_raio.append(item[t])
             t += 1
-    
-    lista_raio.append(lista_raio[0])
-    
-    
-    label_loc = np.linspace(start=0, stop=2 * np.pi, num=len(lista_raio))
-    
-    lista_axs[v].plot(label_loc,lista_raio, label=jogador,marker='.')
-        
-    lista_axs[v].set_thetagrids(np.degrees(label_loc), labels=categories)
-    
-    lista_axs[v].set_facecolor('aliceblue')
-    
-    lista_axs[v].set_rticks([0,1,2,3,4,5,6])
-    
-    lista_axs[v].set_ylim(0,7)
-    
-    lista_axs[v].fill(label_loc,lista_raio,alpha=0.2)
-    
-    lista_axs[v].legend()
-
-st.pyplot(fig)
+          
 
 ''' está aparecendo só a primeira linha de cada jogador, precisa somar'''
