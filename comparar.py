@@ -146,6 +146,14 @@ class ComplexRadar():
         sdata = _scale_data(data, self.ranges)
         self.ax.fill(self.angle, np.r_[sdata, sdata[0]], *args, **kw)
         
+        
+        
+categorias = lista_vars[6:]
+
+fig = plt.figure(figsize = (8,8))
+
+radar = ComplexRadar(fig,categorias,lista_ranges)
+
 for jogador in pd.unique(df_comp.ID):
     
     aux_df = df_comp[df_comp.Jogador == jogador].loc[:, df_comp.columns != 'Jogador']
@@ -156,21 +164,13 @@ for jogador in pd.unique(df_comp.ID):
     
     aux_df = aux_df.reset_index(drop=True)
     
-    categories = aux_df.columns.tolist()
+    lista_valores = []
     
-    r = aux_df[0:1].values.tolist()
-    lista_raio = []
-    for item in r:
-        t = 0
-        while t < len(item):
-            lista_raio.append(item[t])
-            t += 1
+    for coluna in aux_df.columns:
+      lista_valores.append(aux_df[coluna].sum())
+      
+    radar.plot(lista_valores)
 
-categorias = lista_vars[6:]
-
-fig = plt.figure(figsize = (8,8))
-
-radar = ComplexRadar(fig,categorias,lista_ranges)
 
 st.pyplot(fig)
 
